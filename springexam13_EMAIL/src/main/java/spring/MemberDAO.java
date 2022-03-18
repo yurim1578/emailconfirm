@@ -9,4 +9,6 @@ public interface MemberDAO {
 	public void updateKey(HashMap<String, String> map);
 	
 	public void updateStatus(MemberVO member);
+	
+	public MemberVO login(MemberVO member);
 	}

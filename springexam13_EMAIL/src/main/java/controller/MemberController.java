@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -65,5 +66,26 @@ public class MemberController {
 		member.setAuthstatus('y');
 		memberService.updateStatus(member);
 		return "/member_confirm";
+	}
+	
+	@RequestMapping("/login_success")
+	public String login(@ModelAttribute("member")MemberVO member,HttpSession session) {
+		MemberVO member2=memberService.login(member,session);
+		if(member2==null) {
+			return "/error";
+		}
+		if(member2.getAuthstatus()=='n') {
+			return "/error";
+		}
+		session.setAttribute("id", member2.getId());
+	
+		return "/login_success";
+	}
+	
+	@RequestMapping("/logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "/logout";
+		
 	}
 }

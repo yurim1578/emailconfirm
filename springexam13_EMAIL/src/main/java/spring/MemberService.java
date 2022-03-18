@@ -3,6 +3,7 @@ package spring;
 import java.util.HashMap;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -26,4 +27,8 @@ public class MemberService {
 	public void updateStatus(MemberVO member) {
 		memberDAO.updateStatus(member);
 	}
+	public MemberVO login(MemberVO member,HttpSession session) {
+		return memberDAO.login(member);
+	}
+
 }

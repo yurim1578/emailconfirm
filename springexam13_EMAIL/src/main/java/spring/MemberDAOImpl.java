@@ -28,4 +28,9 @@ public class MemberDAOImpl implements MemberDAO {
 	public void updateStatus(MemberVO member) {
 		sqlSessionTemplate.update("updateStatus", member);
 	}
+	
+	@Override
+	public MemberVO login(MemberVO member) {
+		return sqlSessionTemplate.selectOne("login",member);
+	}
 }

@@ -12,8 +12,10 @@
 	<update id="updateKey" parameterType="HashMap">
 		UPDATE member set authkey=#{authkey} where email=#{email}
 	</update>
-	
 	<update id="updateStatus" parameterType="member">
 		UPDATE member set authstatus='y' where authkey=#{authkey} and email=#{email}
 	</update>
+	<select id="login" parameterType="member" resultType="member">
+		select * from member where id=#{id} and password=#{password}
+	</select>
 </mapper>
